@@ -34,7 +34,7 @@ const TableauEmbebed = () => {
 
 
     React.useEffect(() => {
-        fetch("get-trusted-ticket")
+        fetch("https://cors-anywhere.herokuapp.com/https://us-central1-imberalink-238816.cloudfunctions.net/get-trusted-ticket")
             .then(res => res.text())
             .then((data) => {
                 console.log(data);

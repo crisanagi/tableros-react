@@ -2,7 +2,6 @@
   "name": "tableros-react",
   "version": "0.1.0",
   "private": true,
-  "proxy": "https://us-central1-imberalink-238816.cloudfunctions.net",
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
@@ -33,7 +32,8 @@
     "production": [
       ">0.2%",
       "not dead",
-      "not op_mini all"
+      "not op_mini all",
+      "ie >= 9"
     ],
     "development": [
       "last 1 chrome version",

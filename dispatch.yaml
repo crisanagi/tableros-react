@@ -1,0 +1,3 @@
+service:
+- url: "console.solkos.com.mx/"
+  service: tableau-react

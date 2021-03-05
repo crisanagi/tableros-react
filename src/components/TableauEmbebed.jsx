@@ -1,11 +1,21 @@
+//https://help.tableau.com/current/api/js_api/en-us/JavaScriptAPI/js_api_concepts_filtering.htm
+//https://help.tableau.com/current/pro/desktop/en-us/embed_structure.htm
+
+
 import React, { useState } from 'react';
 import TableauReport from 'tableau-react';
+import { Input } from 'antd';
+import { SearchOutlined } from '@ant-design/icons';
+import 'antd/dist/antd.css';
+
 
 const TableauEmbebed = () => {
+
+    const { Search } = Input;
     
-    //const [url]  React.useState("https://tableau.efemsa.com/views/CIR_Wireless_v2/General?:showAppBanner=false&:display_count=n&:showVizHome=n&:origin=viz_share_link");
+    const [url] =   React.useState("https://tableau.efemsa.com/views/CIR_Wireless_v2/General?:showAppBanner=false&:display_count=n&:showVizHome=n&:origin=viz_share_link");
     //const [url] = React.useState("https://tableau.efemsa.com/views/Bonafont/Bonafont?:showAppBanner=false&:display_count=n&:showVizHome=n&:origin=viz_share_link")
-    const [url] = React.useState("https://tableau.efemsa.com/views/CIR_Wireless_v2/General?:showAppBanner=false&:display_count=n&:showVizHome=n&:origin=viz_share_link")
+    //const [url] = React.useState("https://tableau.efemsa.com/views/CIR_Wireless_v2/General?:showAppBanner=false&:display_count=n&:showVizHome=n&:origin=viz_share_link")
     const [token, setToken] = React.useState(null);
     const [isBusy, setBusy] = React.useState(true);
 
@@ -25,6 +35,10 @@ const TableauEmbebed = () => {
     );
 
     const { height, width } = getWindowDimensions();
+    
+    var filters = {
+        mac: "B4:A2:EB:41:EB:2A"
+    }
 
     const options = {
         height: 1328,
@@ -32,9 +46,8 @@ const TableauEmbebed = () => {
         toolbar: "no"
     }
 
-
     React.useEffect(() => {
-        fetch("https://cors-anywhere.herokuapp.com/https://us-central1-imberalink-238816.cloudfunctions.net/get-trusted-ticket")
+        fetch("https://us-central1-imberalink-238816.cloudfunctions.net/get-trusted-ticket-cors")
             .then(res => res.text())
             .then((data) => {
                 console.log(data);
@@ -44,12 +57,27 @@ const TableauEmbebed = () => {
             .catch(console.log);
     }, [])
 
+    const onSearch = value => { 
+        console.log("onSearch" + value)  
+        filters = {
+            mac: value
+        }
+    }
+ 
+
     return (
         <div>
         <h2>Holis</h2>
         <div>
             contenido de botones {height} , {width}
         </div>
+        <div>
+            <Search placeholder="MAC"  
+                    enterButton="Filtrar MAC"
+                    size="large"
+                    allowClear 
+                    onSearch={onSearch}/>
+        </div> 
         { isBusy ? 
         ( <div>cargando</div> ) :
         (
@@ -58,6 +86,8 @@ const TableauEmbebed = () => {
                   url={url}
                   token={token}
                   options={options}
+                  filters={filters}
+                  style={{width: 200 }}
                 /> 
             </div>
         ) }

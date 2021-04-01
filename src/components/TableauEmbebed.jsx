@@ -13,7 +13,8 @@ const TableauEmbebed = () => {
 
     const { Search } = Input;
     
-    const [url] =   React.useState("https://tableau.efemsa.com/views/CIR_Wireless_v2/General?:showAppBanner=false&:display_count=n&:showVizHome=n&:origin=viz_share_link");
+    const [url] =   React.useState("https://tableau.efemsa.com/views/Peafiel/PromedioAperturasDaporPdV?:showAppBanner=false&:display_count=n&:showVizHome=n&:origin=viz_share_link");
+    //-const [url] =   React.useState("https://tableau.efemsa.com/views/Semforo_Peafiel/SemforoTransmisin?:showAppBanner=false&:display_count=n&:showVizHome=n&:origin=viz_share_link");
     //const [url] = React.useState("https://tableau.efemsa.com/views/Bonafont/Bonafont?:showAppBanner=false&:display_count=n&:showVizHome=n&:origin=viz_share_link")
     //const [url] = React.useState("https://tableau.efemsa.com/views/CIR_Wireless_v2/General?:showAppBanner=false&:display_count=n&:showVizHome=n&:origin=viz_share_link")
     const [token, setToken] = React.useState(null);
@@ -36,8 +37,10 @@ const TableauEmbebed = () => {
 
     const { height, width } = getWindowDimensions();
     
+    
+    
     var filters = {
-        mac: "B4:A2:EB:41:EB:2A"
+        outletname: "Ab. San Let,Kevin,casa Díaz,Ab. neydi" 
     }
 
     const options = {
@@ -63,21 +66,25 @@ const TableauEmbebed = () => {
             mac: value
         }
     }
- 
 
-    return (
-        <div>
-        <h2>Holis</h2>
-        <div>
-            contenido de botones {height} , {width}
-        </div>
-        <div>
+    /*
+    <div>
             <Search placeholder="MAC"  
                     enterButton="Filtrar MAC"
                     size="large"
                     allowClear 
                     onSearch={onSearch}/>
         </div> 
+    */
+ 
+
+    return (
+        <div>
+        <h2>Tablero con filtros</h2>
+        <div>
+            contenido de botones {height} , {width}
+        </div>
+        
         { isBusy ? 
         ( <div>cargando</div> ) :
         (

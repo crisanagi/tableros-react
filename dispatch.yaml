@@ -1,4 +1,0 @@
-dispatch: 
-  # Default service serves simple hostname request.
-  - url: "console.solkos.com.mx/"
-    service: tableros-react

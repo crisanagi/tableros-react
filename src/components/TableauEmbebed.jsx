@@ -13,10 +13,10 @@ const TableauEmbebed = () => {
 
     const { Search } = Input;
     
-    const [url] =   React.useState("https://tableau.efemsa.com/views/Peafiel/PromedioAperturasDaporPdV?:showAppBanner=false&:display_count=n&:showVizHome=n&:origin=viz_share_link");
+    const [url] =   React.useState("https://tableau.efemsa.com/views/Penafiel_ControlActivo_16042021/ParqueInstalado?:showAppBanner=false&:display_count=n&:showVizHome=n&:origin=viz_share_link");
     //-const [url] =   React.useState("https://tableau.efemsa.com/views/Semforo_Peafiel/SemforoTransmisin?:showAppBanner=false&:display_count=n&:showVizHome=n&:origin=viz_share_link");
-    //const [url] = React.useState("https://tableau.efemsa.com/views/Bonafont/Bonafont?:showAppBanner=false&:display_count=n&:showVizHome=n&:origin=viz_share_link")
-    //const [url] = React.useState("https://tableau.efemsa.com/views/CIR_Wireless_v2/General?:showAppBanner=false&:display_count=n&:showVizHome=n&:origin=viz_share_link")
+    //const [url] = React.useState("https://tableau.efemsa.com/views/Bonafont/Bonafont?:showAppBanner=false&:display_count=n&:showVizHome=n&:origin=viz_share_link") 
+    //const [url] = React.useState("https://tableau.efemsa.com/views/CIR_Wireless_v2/General?:showAppBanner=false&:display_count=n&:showVizHome=n&:origin=viz_share_link") 
     const [token, setToken] = React.useState(null);
     const [isBusy, setBusy] = React.useState(true);
 
@@ -38,15 +38,16 @@ const TableauEmbebed = () => {
     const { height, width } = getWindowDimensions();
     
     
-    
     var filters = {
         outletname: "Ab. San Let,Kevin,casa Díaz,Ab. neydi" 
     }
 
+    //Las opciones que son soportadas, estan documentadas en https://help.tableau.com/current/api/js_api/en-us/JavaScriptAPI/js_api_ref.htm#ref_head_9
     const options = {
         height: 1328,
         width: 1280,
-        toolbar: "no"
+        embed: "yes",
+        hideToolbar: true
     }
 
     React.useEffect(() => {
